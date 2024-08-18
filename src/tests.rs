@@ -67,7 +67,7 @@ fn save_and_load() {
 
     let loaded_markov = MarkovData::from_bytes(&bytes).unwrap();
     let test_sample: String = loaded_markov.sample(&mut rng);
-    assert_eq!(String::from("Strings"), test_sample);
+    assert_eq!(test_sample, "Strings");
 }
 
 #[test]

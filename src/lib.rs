@@ -126,7 +126,7 @@ impl MarkovData {
                     },
                 )
             });
-            for i in 0..(string.len() - 2) {
+            for i in 0..(string.chars().count() - 1) {
                 let mut chars = string.chars();
                 let char_triple = (
                     (
@@ -163,7 +163,8 @@ impl MarkovData {
                 .iter()
                 .filter_map(|(&k, (chars, weights))| {
                     WeightedIndex::new(weights)
-                        .map_or(None, |res| Some((k, (chars.clone(), weights.clone(), res))))
+                        .ok()
+                        .map(|res| (k, (chars.clone(), weights.clone(), res)))
                 })
                 .collect(),
         }
