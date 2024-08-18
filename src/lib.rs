@@ -139,10 +139,7 @@ impl MarkovData {
                             None => continue,
                         },
                     ),
-                    match chars.next() {
-                        Some(c) => c,
-                        None => continue,
-                    },
+                    chars.next().unwrap_or(';'),
                 );
                 counts.insert(char_triple, {
                     counts.get(&char_triple).map_or(1, |c| c + 1)
